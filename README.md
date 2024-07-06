@@ -4,17 +4,15 @@ This plugin allows you to use the Typora HTML image syntax in Obsidian. It conve
 
 This project is inspired by [obsidian-local-img-plugin](https://github.com/talengu/obsidian-local-img-plugin/tree/master) with bugs fixed and Live Preview mode in iOS supported.
 
-| Platfrom | File                                                                                  | LivePreview | ReadingMode |
-|----------|---------------------------------------------------------------------------------------| ----------- | ----------- |
-| macOS    | [main.ts](https://github.com/LiangrunDa/obsidian-typora-html-img/blob/master/main.js) | ✅           | ✅           |
-| iOS      | [main.ts](https://github.com/LiangrunDa/obsidian-typora-html-img/blob/master/main.js) | ✅           | ✅           |
+| Platfrom | LivePreview | ReadingMode |
+|----------| ----------- | --------- |
+| macOS    |  ✅           | ✅         |
+| iOS      | ✅           | ✅         |
 
 
 ## Installation
 
-1. Download the `main.js` and `manifest.json` files from the latest release. 
-
-> 
+1. Download the `main.js` and `manifest.json` files from the latest release: https://github.com/LiangrunDa/obsidian-typora-html-img/releases/download/1.0.0/typora-html-local-img.zip
 
 2. Copy the files to your Obsidian plugins folder. 
 
