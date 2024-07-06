@@ -1,11 +1,11 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
+	"id": "typora-html-local-img",
+	"name": "Typora HTML Local Image",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
+	"description": "This plugin allows you to use local images in Typora Markdown files.",
 	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"authorUrl": "https://liangrunda.com",
+	"fundingUrl": "https://liangrunda.com",
 	"isDesktopOnly": false
 }
