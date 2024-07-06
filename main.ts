@@ -1,7 +1,7 @@
 import {Platform, Plugin, Modal, App} from 'obsidian';
 import {EditorView, PluginValue, ViewPlugin, ViewUpdate,} from "@codemirror/view";
 
-const DEBUG = false;
+const DEBUG = true;
 
 class LocalImagePluginView implements PluginValue {
 	constructor(
@@ -11,14 +11,7 @@ class LocalImagePluginView implements PluginValue {
 	}
 
 	update(update: ViewUpdate) {
-		if (
-			update.docChanged ||
-			update.viewportChanged ||
-			update.geometryChanged ||
-			update.transactions.some((tr) => tr.reconfigured)
-		) {
-			this.callback(this.view.dom);
-		}
+		this.callback(this.view.dom);
 	}
 
 	destroy() {
@@ -51,7 +44,10 @@ export default class HtmlLocalImgPlugin extends Plugin {
 			return;
 		}
 		for (const image of images) {
-			if (image.src == "" || image.src.startsWith("https://") || image.src.startsWith("/")) {
+			if (image.src == "" ||
+				image.src.startsWith("https://") ||
+				image.src.startsWith("/")
+				) {
 				continue;
 			}
 
@@ -78,11 +74,11 @@ export default class HtmlLocalImgPlugin extends Plugin {
 			if (Platform.isMobile) {
 				image.style.objectFit = "contain"
 				image.src = active_path
+				debug(this.app, "Image path updated: " + image.src)
 			} else {
 				image.src = active_path + '/' + decodedSrc
+				debug(this.app, "Image path updated: " + image.src)
 			}
-
-			debug(this.app, "Processed image: " + image.src)
 
 		}
 	}
@@ -91,7 +87,9 @@ export default class HtmlLocalImgPlugin extends Plugin {
 const debug = (app: App, message: string) => {
 	if (DEBUG){
 		console.log(message);
-		new DebugModal(app, message).open()
+		if (Platform.isMobile) {
+			new DebugModal(app, message).open()
+		}
 	}
 }
 
