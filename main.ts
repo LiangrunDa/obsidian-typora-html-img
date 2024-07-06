@@ -1,7 +1,7 @@
 import {Platform, Plugin, Modal, App} from 'obsidian';
 import {EditorView, PluginValue, ViewPlugin, ViewUpdate,} from "@codemirror/view";
 
-const DEBUG = true;
+const DEBUG = false;
 
 class LocalImagePluginView implements PluginValue {
 	constructor(
