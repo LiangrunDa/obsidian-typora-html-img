@@ -6,13 +6,15 @@ This project is inspired by [obsidian-local-img-plugin](https://github.com/talen
 
 | Platfrom | File                                                                                  | LivePreview | ReadingMode |
 |----------|---------------------------------------------------------------------------------------| ----------- | ----------- |
-| macOS    | [main.js](https://github.com/LiangrunDa/obsidian-typora-html-img/blob/master/main.js) | ✅           | ✅           |
-| iOS      | [main.js](https://github.com/LiangrunDa/obsidian-typora-html-img/blob/master/main.js) | ✅           | ✅           |
+| macOS    | [main.ts](https://github.com/LiangrunDa/obsidian-typora-html-img/blob/master/main.js) | ✅           | ✅           |
+| iOS      | [main.ts](https://github.com/LiangrunDa/obsidian-typora-html-img/blob/master/main.js) | ✅           | ✅           |
 
 
 ## Installation
 
-1. Download the `main.js` and `manifest.json` files from the latest release.
+1. Download the `main.js` and `manifest.json` files from the latest release. 
+
+> 
 
 2. Copy the files to your Obsidian plugins folder. 
 
