@@ -5,13 +5,19 @@ const DEBUG = false;
 
 class LocalImagePluginView implements PluginValue {
 	constructor(
+		private app: App,
 		private view: EditorView,
-		private callback: (dom: HTMLElement) => void
+		private callback: (element: HTMLElement, currentPath: string) => void
 	) {
 	}
 
 	update(update: ViewUpdate) {
-		this.callback(this.view.dom);
+		const currentPath = this.app.workspace.getActiveFile()?.path;
+		if (currentPath == null) {
+			return;
+		}
+		const element = this.view.dom;
+		this.callback(element, currentPath);
 	}
 
 	destroy() {
@@ -24,21 +30,23 @@ export default class HtmlLocalImgPlugin extends Plugin {
 	async onload() {
 
 		// the post processor is called in reading mode
-		this.registerMarkdownPostProcessor((element, _) => {
-			this.processElement(element);
+		this.registerMarkdownPostProcessor((element, ctx) => {
+			this.processElement(element, ctx.sourcePath);
 		})
 
 		this.registerEditorExtension(
 			ViewPlugin.define(
 				(view) =>
 					new LocalImagePluginView(
+						this.app,
 						view,
 						this.processElement.bind(this)
 					)),
 		);
 	}
 
-	processElement(element: HTMLElement) {
+	processElement(element: HTMLElement, currentPath: string) {
+		debug(this.app, "Processing element" + element.innerText + " with current path: " + currentPath)
 		const images = Array.from(element.getElementsByTagName("img"));
 		if (this.app?.metadataCache == null) {
 			return;
@@ -46,7 +54,8 @@ export default class HtmlLocalImgPlugin extends Plugin {
 		for (const image of images) {
 			if (image.src == "" ||
 				image.src.startsWith("https://") ||
-				image.src.startsWith("/")
+				image.src.startsWith("/") ||
+				(image.src.startsWith("app://") && !image.src.startsWith("app://obsidian.md/"))
 				) {
 				continue;
 			}
@@ -55,18 +64,15 @@ export default class HtmlLocalImgPlugin extends Plugin {
 			// for encoded characters
 			const decodedSrc = decodeURIComponent(src);
 
-			const activeFile = this.app.workspace.getActiveFile();
 
-			if (activeFile == null) {
-				debug(this.app, "Active file is null")
-				continue
-			}
-
-			const imageFile = this.app.metadataCache.getFirstLinkpathDest(decodedSrc, activeFile.path);
+			const imageFile = this.app.metadataCache.getFirstLinkpathDest(decodedSrc, currentPath);
 			if (imageFile == null) {
-				// debug(this.app, "Image file is null")
+				debug(this.app, "trying to get image file: " + decodedSrc + " with current path: " + currentPath + " but failed")
 				continue;
+			} else {
+				debug(this.app, "trying to get image file: " + decodedSrc + " with current path: " + currentPath + " and succeeded")
 			}
+
 
 			const active_path = this.app.vault.getResourcePath(imageFile)
 

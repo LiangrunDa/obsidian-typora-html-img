@@ -1,11 +1,10 @@
 {
 	"id": "typora-html-local-img",
 	"name": "Typora HTML Local Image",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"minAppVersion": "0.15.0",
 	"description": "This plugin allows you to use local images in Typora Markdown files.",
 	"author": "Liangrun Da",
 	"authorUrl": "https://liangrunda.com",
-	"fundingUrl": "https://liangrunda.com",
 	"isDesktopOnly": false
 }
