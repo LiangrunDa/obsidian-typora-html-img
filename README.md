@@ -12,7 +12,7 @@ This project is inspired by [obsidian-local-img-plugin](https://github.com/talen
 
 ## Installation
 
-1. Download the `main.js` and `manifest.json` files from the latest release: https://github.com/LiangrunDa/obsidian-typora-html-img/releases/download/1.0.0/typora-html-local-img.zip
+1. Download the `main.js` and `manifest.json` files from the latest release: https://github.com/LiangrunDa/obsidian-typora-html-img/releases/download/1.0.1/typora-html-local-img.zip
 
 2. Copy the files to your Obsidian plugins folder. 
 
